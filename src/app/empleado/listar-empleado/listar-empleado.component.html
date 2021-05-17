@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row mt-4">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h4 class="mb-0">Lista de empleados</h4>
+          </div>   
+    
+          <dx-data-grid id="gridContainer" [showColumnLines]="false" [showRowLines]="true"
+          [hoverStateEnabled]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [dataSource]="listaEmpleados"  noDataText="No se encontraron Datos" [showBorders]="true">
+    
+            <dxo-search-panel [visible]="true" [width]=540 placeholder="Buscar por cualquier campo"></dxo-search-panel>
+            <dxo-paging [pageSize]="10"></dxo-paging>
+    
+            <dxo-pager [visible]="true" [showInfo]="true" infoText="Pagina {0} de {1} ({2} Empleados)" [showPageSizeSelector]="true">
+            </dxo-pager>
+    
+            <dxo-load-panel [enabled]="true" text="Cargando..."></dxo-load-panel>
+            <dxi-column dataField="nombre" alignment="center" caption="Nombre(cargo)"></dxi-column>
+            <dxi-column dataField="fechaNacimiento" alignment="center" caption="Edad"></dxi-column>
+            <dxi-column dataField="fechaContratacion" alignment="center" caption="Fecha contratación"></dxi-column>
+            <dxi-column caption="Acciones" cellTemplate="acciones"></dxi-column>
+    
+            
+    
+            <div *dxTemplate="let d of 'acciones'">
+              <button routerLink="/editar/{{d.data.id}}" type="button" class="btn btn-secondary btn-sm" title="Editar empleado">
+                Editar</button>
+              <button routerLink="/ver/{{d.data.id}}" style="margin: 3px;" type="button" class="btn btn-primary btn-sm" title="Ver empleado">
+                Ver</button>
+              <button type="button" (click)="eliminarEmpleado(d.data.id)" class="btn btn-danger btn-sm" title="Eliminar empleado">
+                Eliminar</button>
+            </div>
+    
+          </dx-data-grid>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <button class="btn btn-secondary" title="Editar empleado" routerLink="/registro">
+      + Crear nuevo empleado</button>
+  </div>
