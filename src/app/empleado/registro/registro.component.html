@@ -1,127 +1,134 @@
 <div class="container">
-    <h3>Nuevo Empleado</h3>
-    <hr class="espacio">
-    <form [formGroup]="formEmpleado" class="espacio">
-        <div class="row">
-            <div class="col-lg-8">
-                  <div class="mb-6 row">
-                    <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
-                    <div class="col-sm-5">
-                      <input formControlName="nombre" type="text" class="form-control">
-                      <div *ngIf="formEmpleado.controls['nombre'].invalid && formEmpleado.controls['nombre'].dirty">
-                        <span style="color: red;">Nombre es obligatorio y mayor a 3 caracteres!!.</span>
-                    </div>
-                    </div>
-                  </div><br>
-                  <div class="mb-6 row">
-                    <label for="inputFecha" class="col-sm-2 col-form-label">Fecha de nacimiento</label>
-                    <div class="col-sm-5">
-                      <input formControlName="fechaNacimiento" type="date" class="form-control" (change)="verificarFecha($event)">
-                      <div *ngIf="formEmpleado.controls['fechaNacimiento'].invalid && formEmpleado.controls['fechaNacimiento'].dirty">
-                        <span style="color: red;">Fecha Nacimiento obligatorio!!.</span>
-                      </div>
-                      <div *ngIf="edad<18">
-                        <span style="color: red;">Edad minima 18 años!!.</span>
-                      </div>
-                    </div>
-                  </div><br>
-                  <div class="mb-6 row">
-                    <label for="inputPais" class="col-sm-2 col-form-label">Pais</label>
-                    <div class="col-sm-5">
-                      <select formControlName="pais" class="form-select">
-                          <option value="{{item.name}}" *ngFor="let item of listaPaises">{{item.name}}</option>
-                      </select>
-                      <div *ngIf="formEmpleado.controls['pais'].invalid && formEmpleado.controls['pais'].dirty">
-                        <span style="color: red;">Pais obligatorio!!.</span>
-                    </div>
-                    </div>
-                  </div><br>
-                  <div class="mb-6 row">
-                    <label for="inputUsuario" class="col-sm-2 col-form-label">Nombre Usuario</label>
-                    <div class="col-sm-5">
-                      <input formControlName="nombreUsuario" type="text" class="form-control">
-                      <div *ngIf="formEmpleado.controls['nombreUsuario'].invalid && formEmpleado.controls['nombreUsuario'].dirty">
-                        <span style="color: red;">Nombre Usuario obligatorio y mayor a 3 caracteres!!.</span>
-                    </div>
-                    </div>
-                  </div><br>
-                  <div class="mb-6 row">
-                    <label for="inputFecha" class="col-sm-2 col-form-label">Fecha de contratación</label>
-                    <div class="col-sm-5">
-                      <input formControlName="fechaContratacion" type="date" class="form-control">
-                      <div *ngIf="formEmpleado.controls['fechaContratacion'].invalid && formEmpleado.controls['fechaContratacion'].dirty">
-                        <span style="color: red;">Fecha Contratación obligatorio!!.</span>
-                    </div>
-                    </div>
-                  </div><br>
-                  <div class="form-check form-switch">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Estado</label>
-                    <input formControlName="estado" class="form-check-input" type="checkbox">         
-                  </div> 
+  <h3>Nuevo Empleado</h3>
+  <hr class="espacio" />
+  <form [formGroup]="formEmpleado" class="espacio">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="mb-6 row">
+          <label for="inputNombre" class="col-sm-2 col-form-label"
+            >firstName</label
+          >
+          <div class="col-sm-5">
+            <input
+              formControlName="firstName"
+              type="text"
+              class="form-control"
+            />
+            <div
+              *ngIf="
+                formEmpleado.controls['firstName'].invalid &&
+                formEmpleado.controls['firstName'].dirty
+              "
+            >
+              <span style="color: red">firstName es obligatorio!!.</span>
             </div>
-
-            <div class="col-lg-4">
-                <div class="mb-3 row">
-                  <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <label for="inputCargo" class="col-sm-2 col-form-label">Area</label>
-                    <button (click)="btnAdmin()" type="button" class="btn btn-outline-secondary">Administrativa</button>
-                    <button (click)="btnTecnologia()" type="button" class="btn btn-outline-secondary">Tecnologia</button>
-                  </div> 
-                </div><br>
-
-                <div class="mb-6 row" *ngIf="opciones==0">
-                  
-                  <div class="col-sm-5">  
-                    <label for="inputCargo" class="col-sm-2 col-form-label">Seleccione area</label>
-                  </div>
-                </div>
-               
-                <div class="mb-6 row" *ngIf="opciones==2">
-                  <label for="inputCargo" class="col-sm-2 col-form-label">Cargo</label>
-                  <div class="col-sm-5">
-                    <select formControlName="cargo" class="form-select" (change)="verificarCargo($event)">
-                        <option value="Fundador y CEO">Fundador y CEO</option>
-                        <option value="Recursos Humanos">Recursos Humanos</option>
-                    </select>
-                  </div>
-                </div><br>
-                <div class="mb-6 row" *ngIf="opciones==1">
-                  <label for="inputCargo" class="col-sm-2 col-form-label">Cargo</label>
-                  <div class="col-sm-5">
-                    <select formControlName="cargo" class="form-select">
-                        <option value="Programador">Programador</option>
-                        <option value="Diseñador">Diseñador</option>
-                    </select>
-                  </div>
-                </div><br>
-                <div class="mb-6 row" *ngIf="estadoComision">
-                  <label for="inputComision" class="col-sm-2 col-form-label">Comisión</label>
-                  <div class="col-sm-5">
-                    <input formControlName="comision" type="number" class="form-control">
-                  </div>
-                </div><br>
-            
           </div>
         </div>
-        <br><br>
-        <div class="row">
-            <div class="col-lg-2" style="display: flex; justify-content: space-between;">
-                <button class="btn btn-secondary" title="Volver a lista empleados" routerLink="/listar">
-                    <span style="margin: 5px;"> < Atrás </span></button>
-          
-                <button [disabled]="!formEmpleado.valid" class="btn btn-primary" 
-                    title="Guardar empleado" (click)="addEmpleado()">
-                    <span style="margin: 5px;">Guardar</span></button>
-             
-                   
+        <br />
+        <div class="mb-6 row">
+          <label for="inputFecha" class="col-sm-2 col-form-label"
+            >lastName</label
+          >
+          <div class="col-sm-5">
+            <input
+              formControlName="lastName"
+              type="text"
+              class="form-control"
+            />
+            <div
+              *ngIf="
+                formEmpleado.controls['lastName'].invalid &&
+                formEmpleado.controls['lastName'].dirty
+              "
+            >
+              <span style="color: red">lastName obligatorio!!.</span>
             </div>
+          </div>
         </div>
-    </form>
-    <div *ngIf="bandera">
-      <hr>
-      <div class="alert alert-primary" role="alert">
-          Se registro empleado con exito.
+        <br />
+
+        <div class="mb-6 row">
+          <label for="inputUsuario" class="col-sm-2 col-form-label"
+            >DocumentNumber</label
+          >
+          <div class="col-sm-5">
+            <input
+              formControlName="documentNumber"
+              type="text"
+              class="form-control"
+            />
+            <div
+              *ngIf="
+                formEmpleado.controls['documentNumber'].invalid &&
+                formEmpleado.controls['documentNumber'].dirty
+              "
+            >
+              <span style="color: red">documentNumber obligatorio !!.</span>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="mb-6 row">
+          <label for="inputFecha" class="col-sm-2 col-form-label">Title</label>
+          <div class="col-sm-5">
+            <input formControlName="Title" type="text" class="form-control" />
+            <div
+              *ngIf="
+                formEmpleado.controls['Title'].invalid &&
+                formEmpleado.controls['Title'].dirty
+              "
+            >
+              <span style="color: red">Title es obligatorio!!.</span>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="mb-6 row">
+          <label for="inputFecha" class="col-sm-2 col-form-label">Avatar</label>
+          <div class="col-sm-5">
+            <input formControlName="avatar" type="text" class="form-control" />
+            <div
+              *ngIf="
+                formEmpleado.controls['avatar'].invalid &&
+                formEmpleado.controls['avatar'].dirty
+              "
+            >
+              <span style="color: red">avatar es obligatorio!!.</span>
+            </div>
+          </div>
+        </div>
+        <br />
       </div>
     </div>
+    <br /><br />
+    <div class="row">
+      <div
+        class="col-lg-2"
+        style="display: flex; justify-content: space-between"
+      >
+        <button
+          class="btn btn-secondary"
+          title="Volver a lista empleados"
+          routerLink="/listar"
+        >
+          <span style="margin: 5px"> < Atrás </span>
+        </button>
 
+        <button
+          [disabled]="!formEmpleado.valid"
+          class="btn btn-primary"
+          title="Guardar empleado"
+          (click)="addEmpleado()"
+        >
+          <span style="margin: 5px">Guardar</span>
+        </button>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="bandera">
+    <hr />
+    <div class="alert alert-primary" role="alert">
+      Se registro empleado con exito.
+    </div>
+  </div>
 </div>

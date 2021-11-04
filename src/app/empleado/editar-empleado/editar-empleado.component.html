@@ -1,88 +1,83 @@
 <div class="container">
-    <h3>Editando: {{nombreEmpleado}}</h3>
-    <hr class="espacio">
-    <form [formGroup]="formEmpleado" class="espacio">
-        <div class="row">
-            <div class="col-lg-8">
-                  <div class="mb-6 row">
-                    <label for="inputFecha" class="col-sm-2 col-form-label">Fecha de nacimiento</label>
-                    <div class="col-sm-5">
-                      <input formControlName="fechaNacimiento" type="date" class="form-control">
-                    </div>
-                  </div><br>
-                  <div class="mb-6 row">
-                    <label for="inputPais" class="col-sm-2 col-form-label">Pais</label>
-                    <div class="col-sm-5">
-                      <select formControlName="pais" class="form-select">
-                        <option *ngFor="let i of empleadoEditar">{{i.pais}}</option>
-                        <option value="{{item.name}}" *ngFor="let item of listaPaises">{{item.name}}</option>
-                      </select>
-                    </div>
-                  </div><br>
-                  <div class="mb-6 row">
-                    <label for="inputUsuario" class="col-sm-2 col-form-label">Nombre Usuario</label>
-                    <div class="col-sm-5">
-                      <input formControlName="nombreUsuario" type="text" class="form-control">
-                    </div>
-                  </div><br>
-                  <div class="mb-6 row">
-                    <label for="inputFecha" class="col-sm-2 col-form-label">Fecha de contratación</label>
-                    <div class="col-sm-5">
-                      <input formControlName="fechaContratacion" type="date" class="form-control">
-                    </div>
-                  </div><br>
-                  <div class="form-check form-switch">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Estado</label>
-                    <input formControlName="estado" class="form-check-input" type="checkbox">         
-                  </div> 
-            </div>
-
-            <div class="col-lg-4">
-                <div class="mb-3 row">
-                  <div *ngIf="areaSelec=='Administrativa'" class="btn-group" role="group" aria-label="Basic outlined example">
-                    <label for="inputCargo" class="col-sm-2 col-form-label">Area</label>
-                    <button  class="btn btn-outline-primary">Administrativa</button>
-                    <button  class="btn btn-outline-secondary">Tecnologia</button>
-                  </div> 
-                  <div *ngIf="areaSelec=='Tecnologia'" class="btn-group" role="group" aria-label="Basic outlined example">
-                    <label for="inputCargo" class="col-sm-2 col-form-label">Area</label>
-                    <button class="btn btn-outline-secondary">Administrativa</button>
-                    <button  class="btn btn-outline-primary">Tecnologia</button>
-                  </div> 
-                </div><br>
-
-              
-               
-                <div class="mb-6 row">
-                  <label for="inputCargo" class="col-sm-2 col-form-label">Cargo</label>
-                  <div class="col-sm-10">
-                    <select formControlName="cargo" class="form-select">
-                        <option *ngFor="let i of empleadoEditar">{{i.cargo}}</option>
-                    </select>
-                  </div>
-                </div><br>
-               
-                <div class="mb-6 row" *ngIf="cargo=='Fundador y CEO'">
-                  <label for="inputComision" class="col-sm-2 col-form-label">Comisión</label>
-                  <div class="col-sm-5">
-                    <input formControlName="comision" type="number" class="form-control">
-                  </div>
-                </div><br>
-            
+  <h3>Editando: {{ nombreEmpleado }}</h3>
+  <hr class="espacio" />
+  <form [formGroup]="formEmpleado" class="espacio">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="mb-6 row">
+          <label for="inputText" class="col-sm-2 col-form-label">Nombre</label>
+          <div class="col-sm-5">
+            <input
+              formControlName="firstName"
+              type="text"
+              class="form-control"
+            />
           </div>
         </div>
-        <br><br>
-        <div class="row">
-            <div class="col-lg-2" style="display: flex; justify-content: space-between;">
-                <button class="btn btn-secondary" title="Volver a lista empleados" routerLink="/listar">
-                    <span style="margin: 5px;"> < Atrás </span></button>
-                <button [disabled]="!formEmpleado.valid" class="btn btn-primary" 
-                    title="Guardar empleado" (click)="editarEmpleado()">
-                    <span style="margin: 5px;">Editar</span></button>
-               
-            </div>
+        <br />
+        <div class="mb-6 row">
+          <label for="inputText" class="col-sm-2 col-form-label"
+            >Apellido</label
+          >
+          <div class="col-sm-5">
+            <input
+              formControlName="lastName"
+              type="text"
+              class="form-control"
+            />
+          </div>
         </div>
-    </form>
-  
-
+        <br />
+        <div class="mb-6 row">
+          <label for="inputText" class="col-sm-2 col-form-label"
+            >Número documento</label
+          >
+          <div class="col-sm-5">
+            <input
+              formControlName="documentNumber"
+              type="text"
+              class="form-control"
+            />
+          </div>
+        </div>
+        <br />
+        <div class="mb-6 row">
+          <label for="inputText" class="col-sm-2 col-form-label">Title</label>
+          <div class="col-sm-5">
+            <input formControlName="Title" type="text" class="form-control" />
+          </div>
+        </div>
+        <br />
+        <div class="mb-6 row">
+          <label for="inputText" class="col-sm-2 col-form-label">Avatar</label>
+          <div class="col-sm-5">
+            <input formControlName="avatar" type="text" class="form-control" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <br /><br />
+    <div class="row">
+      <div
+        class="col-lg-2"
+        style="display: flex; justify-content: space-between"
+      >
+        <button
+          class="btn btn-secondary"
+          title="Volver a lista empleados"
+          routerLink="/listar"
+        >
+          <span style="margin: 5px"> < Atrás </span>
+        </button>
+        <button
+          [disabled]="!formEmpleado.valid"
+          class="btn btn-primary"
+          title="Guardar empleado"
+          (click)="editarEmpleado()"
+        >
+          <span style="margin: 5px">Editar</span>
+        </button>
+      </div>
+    </div>
+  </form>
 </div>

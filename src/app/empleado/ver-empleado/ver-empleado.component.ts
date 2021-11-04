@@ -7,29 +7,26 @@ import { EmpleadoService } from 'src/app/servicios/empleado.service';
 @Component({
   selector: 'app-ver-empleado',
   templateUrl: './ver-empleado.component.html',
-  styleUrls: ['./ver-empleado.component.css']
+  styleUrls: ['./ver-empleado.component.css'],
 })
 export class VerEmpleadoComponent implements OnInit {
   dato!: {
-    id:string
+    id: string;
   };
-  opciones!: number;
-  edad!: number;
-  nombreOpcion!:string;
-  areaSelec!:any;
-  cargo!:any;
-  nombreEmpleado!:any;
+
+  nombreEmpleado!: any;
   bandera!: boolean;
-  estadoComision!: boolean;
-  empleadoEditar!: Empleado[] ;
+  empleadoEditar: Empleado = new Empleado();
   formEmpleado!: FormGroup;
-  constructor(private rutaActiva: ActivatedRoute,
+  constructor(
+    private rutaActiva: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private empleadoService: EmpleadoService) { }
+    private empleadoService: EmpleadoService
+  ) {}
 
   ngOnInit(): void {
     this.dato = {
-      id: this.rutaActiva.snapshot.params.id
+      id: this.rutaActiva.snapshot.params.id,
     };
     this.crearFormulario();
     this.getEmpleadoById(this.dato.id);
@@ -40,37 +37,30 @@ export class VerEmpleadoComponent implements OnInit {
    */
   crearFormulario() {
     this.formEmpleado = this.formBuilder.group({
-      fechaNacimiento: ['', Validators.required],
-      pais: ['', Validators.required],
-      nombreUsuario:  ['',Validators.compose([
-        Validators.required, Validators.minLength(3)
-      ])],
-      fechaContratacion: ['', Validators.required],
-      estado: ['', Validators.required],
-      cargo: ['', Validators.required],
-      comision: [''],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      documentNumber: ['', Validators.required],
+      Title: ['', Validators.required],
+      avatar: ['', Validators.required],
     });
   }
-   /**
+  /**
    * consultar servicio con id empleado
    */
   getEmpleadoById(id: string) {
-    this.empleadoService.getEmpleadoById(id).subscribe(data=>{
-      this.empleadoEditar =data;
-      this.nombreEmpleado = this.empleadoEditar[0].nombre;
-      this.areaSelec = this.empleadoEditar[0].area;
-      this.cargo = this.empleadoEditar[0].cargo;
+    this.empleadoService.getEmpleadoById(id).subscribe((data) => {
+      this.empleadoEditar = data;
       this.asignarValoresForm(this.empleadoEditar);
     });
   }
 
-  asignarValoresForm(empleado: Empleado[]){
-    this.formEmpleado.controls['fechaNacimiento'].setValue(empleado[0].fechaNacimiento);
-    this.formEmpleado.controls['pais'].setValue(empleado[0].pais);
-    this.formEmpleado.controls['nombreUsuario'].setValue(empleado[0].nombreUsuario);
-    this.formEmpleado.controls['fechaContratacion'].setValue(empleado[0].fechaContratacion);
-    this.formEmpleado.controls['estado'].setValue(empleado[0].estado);
-    this.formEmpleado.controls['cargo'].setValue(empleado[0].cargo);
-    this.formEmpleado.controls['comision'].setValue(empleado[0].comision);  
+  asignarValoresForm(empleado: Empleado) {
+    this.formEmpleado.controls['firstName'].setValue(empleado.firstName);
+    this.formEmpleado.controls['lastName'].setValue(empleado.lastName);
+    this.formEmpleado.controls['documentNumber'].setValue(
+      empleado.documentNumber
+    );
+    this.formEmpleado.controls['Title'].setValue(empleado.Title);
+    this.formEmpleado.controls['avatar'].setValue(empleado.avatar);
   }
 }
